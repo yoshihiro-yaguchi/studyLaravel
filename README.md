@@ -1,6 +1,6 @@
 # 初回環境構築方法
 
-## 依存関係のインストール(実行済みの場合は不要)
+## phpの依存関係のインストール(実行済みの場合は不要)
 ```
 sudo apt update -y
 ```
@@ -26,7 +26,9 @@ sudo apt install curl php-cli php-mbstring git unzip
 > php -r "unlink('composer-setup.php');" -->
 
 ## `.env.example`をコピーして`.env`ファイルを作成する<br>
-> cp .env.example .env
+```
+cp .env.example .env
+```
 
 ## パッケージのインストール
 ``` 
@@ -38,7 +40,24 @@ docker run --rm \
     composer install --ignore-platform-reqs`
 ```
 
-## sail up
+## エイリアスの設定
+エイリアス設定ファイルを開く
 ```
-vendor/bin/sail up -d
+vim ~/.bashrc
+```
+Iキーを押して適当な場所に
+```
+alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'
+```
+と打ち込む。その後、`esc` -> `:wq` -> エンターキーで保存して終了
+
+`~/.bashrc`に記載したコマンドを反映
+```
+source ~/.bashrc
+```
+
+## 環境の操作
+- 起動
+```
+sail up -d
 ```
