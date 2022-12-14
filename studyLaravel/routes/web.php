@@ -34,3 +34,17 @@ EOF;
 Route::get('/hello/hereDoc', function () use ($html) {
     return $html;
 });
+
+Route::get('/hello/hereDoc/{msg}', function ($msg) {
+
+    $html = <<<EOF
+    <html>
+        <body>
+            <h1>Hello</h1>
+            <p>{$msg}</p>
+            <p>これはサンプルで作ったページです。</p>
+        </body>
+    </html>
+    EOF;
+    return $html;
+});
